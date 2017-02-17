@@ -1,5 +1,6 @@
 package com.smcculley.mycontacts;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -24,4 +25,7 @@ public class ContactActivity extends FragmentActivity {
     }
 
 
+    public String getPackage(Context context) {
+        return context.getPackageName();
+    }
 }

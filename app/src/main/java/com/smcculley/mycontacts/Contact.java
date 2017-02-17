@@ -27,7 +27,7 @@ public class Contact {
     }
 
     public void setName(String name) {
-        Log.i(TAG, "New name: " + name);
+        //Log.i(TAG, "New name: " + name);
         mName = name;
     }
 
@@ -36,7 +36,7 @@ public class Contact {
     }
 
     public void setEmail(String email) {
-        Log.i(TAG, "New email: " + email);
+        //Log.i(TAG, "New email: " + email);
         mEmail = email;
     }
 }
