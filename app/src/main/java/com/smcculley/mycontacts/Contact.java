@@ -13,6 +13,7 @@ public class Contact {
     private UUID mID;
     private String mName;
     private String mEmail;
+    private boolean mFavorite;
 
     public Contact() {
         mID = UUID.randomUUID();
@@ -39,4 +40,14 @@ public class Contact {
         //Log.i(TAG, "New email: " + email);
         mEmail = email;
     }
+
+    public boolean isFavorite() {
+        return mFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        Log.i(TAG, "Favorite: " + favorite);
+        this.mFavorite = mFavorite;
+    }
+
 }

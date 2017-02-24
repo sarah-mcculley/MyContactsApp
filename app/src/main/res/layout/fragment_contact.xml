@@ -20,4 +20,10 @@
         android:id="@+id/contact_email"
         android:padding="20dp"
         android:hint="@string/email_hint" />
+
+    <CheckBox
+        android:text="@string/favorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contact_favorite"/>
 </LinearLayout>
