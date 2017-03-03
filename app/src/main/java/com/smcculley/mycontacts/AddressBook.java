@@ -22,6 +22,7 @@ public class AddressBook {
             if (i % 10 == 0){
                 contact.setFavorite(true);
             }
+            mContacts.add(contact);
         }
     }
 
