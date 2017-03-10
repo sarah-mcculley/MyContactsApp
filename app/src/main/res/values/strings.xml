@@ -3,4 +3,7 @@
     <string name="name_hint">Name</string>
     <string name="email_hint">Email</string>
     <string name="favorite">Favorite</string>
+    <string name="new_contact">New Contact</string>
+    <string name="show_favorites">Show Favorites</string>
+    <string name="show_all">Show All</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.smcculley.mycontacts;
 
+
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,8 @@ import android.support.v4.app.FragmentManager;
 
 import java.util.UUID;
 
+//creates a new intent and puts an extra on it
+//swapping out ContactActivity with ContactPagerActicity lets us swipe left and right
 public class ContactActivity extends SingleFragmentActivity {
     private static final String EXTRA_CONTACT_ID = "com.smcculley.mycontacts.contact_id";
 

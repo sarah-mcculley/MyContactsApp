@@ -47,7 +47,7 @@ public class Contact {
 
     public void setFavorite(boolean favorite) {
         Log.i(TAG, "Favorite: " + favorite);
-        this.mFavorite = mFavorite;
+        this.mFavorite = favorite;
     }
 
 }

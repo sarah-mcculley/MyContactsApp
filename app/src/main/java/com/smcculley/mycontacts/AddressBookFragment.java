@@ -2,12 +2,16 @@ package com.smcculley.mycontacts;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -19,9 +23,47 @@ import java.util.List;
  * Created by smcculley on 2/23/2017.
  */
 
+//AddressBookFragment has a recycler view and an adapter associated with it
+
 public class AddressBookFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private ContactAdapter mContactAdapter;
+    private boolean mShowFavoritesOnly = false;
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_address_book, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_create_contact:
+                return true;
+            case R.id.menu_item_toggle_favorites:
+                mShowFavoritesOnly = !mShowFavoritesOnly;
+                if (mShowFavoritesOnly){
+                    item.setTitle(R.string.show_all);
+                    mContactAdapter.mContacts = AddressBook.get().getFavoriteContacts();
+                }
+                else {
+                    item.setTitle(R.string.show_favorites);
+                    mContactAdapter.mContacts = AddressBook.get().getContacts();
+                }
+                mContactAdapter.notifyDataSetChanged();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    @Override
+    public void onCreate( Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,7 +115,7 @@ public class AddressBookFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            Intent intent = ContactActivity.newIntent(getActivity(), mContact.getID());
+            Intent intent = ContactPagerActivity.newIntent(getActivity(), mContact.getID());
             startActivity(intent);
 
         }

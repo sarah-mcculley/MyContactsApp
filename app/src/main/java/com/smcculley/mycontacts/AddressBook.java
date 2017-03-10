@@ -4,6 +4,7 @@ import android.location.Address;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.UUID;
 /**
  * Created by smcculley on 2/23/2017.
@@ -36,6 +37,16 @@ public class AddressBook {
 
     public List<Contact> getContacts(){
         return mContacts;
+    }
+
+    public List<Contact> getFavoriteContacts(){
+        List<Contact> favorites = new ArrayList<>();
+        for (Contact aContact: mContacts){
+            if (aContact.isFavorite()){
+                favorites.add(aContact);
+            }
+        }
+        return favorites;
     }
 
     public Contact getContact(UUID id){
