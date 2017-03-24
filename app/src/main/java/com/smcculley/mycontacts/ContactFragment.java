@@ -25,7 +25,7 @@ public class ContactFragment extends Fragment {
     private Contact mContact;
     private EditText mNameField;
     private EditText mEmailField;
-    private CheckBox mFavorite;
+    private FavoriteView mFavoriteView;
 
     public static ContactFragment newInstance(UUID contactID){
         ContactFragment contactFragment = new ContactFragment();
@@ -45,6 +45,15 @@ public class ContactFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
+
+        mFavoriteView = (FavoriteView) view.findViewById(R.id.contact_favorite);
+        mFavoriteView.setSelected(mContact.isFavorite());
+        mFavoriteView.setOnSelectedChangedListener(new FavoriteView.OnSelectedChangedListener() {
+            @Override
+            public void onSelectedChanged(boolean selected) {
+                mContact.setFavorite(selected);
+            }
+        });
 
         mNameField = (EditText)view.findViewById(R.id.contact_name);
         mNameField.setText(mContact.getName());
@@ -84,14 +93,15 @@ public class ContactFragment extends Fragment {
             }
         });
 
-        mFavorite = (CheckBox) view.findViewById(R.id.contact_favorite);
-        mFavorite.setChecked(mContact.isFavorite());
-        mFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mFavoriteView = (FavoriteView) view.findViewById(R.id.contact_favorite);
+        mFavoriteView.setSelected(mContact.isFavorite());
+        mFavoriteView.setOnSelectedChangedListener(new FavoriteView.OnSelectedChangedListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mContact.setFavorite(isChecked);
+            public void onSelectedChanged(boolean selected) {
+                mContact.setFavorite(selected);
             }
         });
+
         return view;
     }
 }
