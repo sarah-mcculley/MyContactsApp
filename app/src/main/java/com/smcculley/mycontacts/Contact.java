@@ -14,6 +14,8 @@ public class Contact {
     private String mName;
     private String mEmail;
     private boolean mFavorite;
+    private String mAddress;
+
 
     public Contact() {
         mID = UUID.randomUUID();
@@ -40,6 +42,16 @@ public class Contact {
         //Log.i(TAG, "New email: " + email);
         mEmail = email;
     }
+
+    public String getAddress() {
+        return mAddress;
+    }
+
+    public void setAddress(String mAddress) {
+        this.mAddress = mAddress;
+        Log.d(TAG, "New address: " + mAddress);
+    }
+
 
     public boolean isFavorite() {
         return mFavorite;

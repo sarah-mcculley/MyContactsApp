@@ -1,10 +1,7 @@
 package com.smcculley.mycontacts;
 
-import android.location.Address;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.UUID;
 /**
  * Created by smcculley on 2/23/2017.
@@ -20,6 +17,7 @@ public class AddressBook {
             Contact contact = new Contact();
             contact.setName("Person "+ i);
             contact.setEmail("Email " + i + "@email.com");
+            contact.setAddress("550 E. Spring St, Columbus, OH 43215");
             if (i % 10 == 0){
                 contact.setFavorite(true);
             }

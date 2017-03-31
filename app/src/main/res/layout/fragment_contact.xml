@@ -3,6 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.smcculley.mycontacts.FavoriteView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contact_favorite"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,8 +26,19 @@
         android:padding="20dp"
         android:hint="@string/email_hint" />
 
-    <com.smcculley.mycontacts.FavoriteView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/contact_favorite"/>
+        android:inputType="textPersonName"
+        android:text="Address"
+        android:ems="10"
+        android:id="@+id/contact_address"
+        android:padding="20dp"
+        android:hint="@string/address_hint" />
+
+    <com.google.android.gms.maps.MapView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/contact_map" />
+
 </LinearLayout>
