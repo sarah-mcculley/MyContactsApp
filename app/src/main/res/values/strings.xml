@@ -7,4 +7,6 @@
     <string name="show_favorites">Show Favorites</string>
     <string name="show_all">Show All</string>
     <string name="address_hint">Address</string>
+    <string name="send_email">Send Email</string>
+    <string name="email_app_error">No Email App Configured</string>
 </resources>

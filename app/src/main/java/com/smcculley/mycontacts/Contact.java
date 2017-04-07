@@ -1,5 +1,6 @@
 package com.smcculley.mycontacts;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.util.UUID;
@@ -15,6 +16,16 @@ public class Contact {
     private String mEmail;
     private boolean mFavorite;
     private String mAddress;
+    private Bitmap mImage;
+
+    public Bitmap getImage() {
+        return mImage;
+    }
+
+    public void setImage(Bitmap mImage) {
+        this.mImage = mImage;
+    }
+
 
 
     public Contact() {
