@@ -16,6 +16,9 @@
         <activity android:name=".ContactPagerActivity">
             android:parentActivityName=".AddressBookActivity"
         </activity>
+        <activity android:name=".SettingsActivity">
+            android:parentActivityName=".AddressBookActivity"
+        </activity>
         <activity android:name=".AddressBookActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

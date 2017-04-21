@@ -1,5 +1,6 @@
 package com.smcculley.mycontacts;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -45,13 +46,17 @@ public class AddressBookFragment extends Fragment {
                 mShowFavoritesOnly = !mShowFavoritesOnly;
                 if (mShowFavoritesOnly){
                     item.setTitle(R.string.show_all);
-                    mContactAdapter.mContacts = AddressBook.get().getFavoriteContacts();
+                    mContactAdapter.mContacts = AddressBook.get(getContext()).getFavoriteContacts();
                 }
                 else {
                     item.setTitle(R.string.show_favorites);
-                    mContactAdapter.mContacts = AddressBook.get().getContacts();
+                    mContactAdapter.mContacts = AddressBook.get(getContext()).getContacts();
                 }
                 mContactAdapter.notifyDataSetChanged();
+                return true;
+            case R.id.menu_item_settings:
+                Intent settingsIntent = new Intent(getContext(), SettingsActivity.class);
+                startActivity(settingsIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -71,9 +76,16 @@ public class AddressBookFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_address_book, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.address_book_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        new SyncData(getContext()).execute();
         updateUI();
 
         return view;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        new SyncData(getContext()).execute();
     }
 
     @Override
@@ -84,7 +96,7 @@ public class AddressBookFragment extends Fragment {
     }
 
     private void updateUI(){
-        AddressBook addressBook = AddressBook.get();
+        AddressBook addressBook = AddressBook.get(getContext());
         List<Contact> contacts = addressBook.getContacts();
         if(mContactAdapter == null){
             mContactAdapter = new ContactAdapter(contacts);

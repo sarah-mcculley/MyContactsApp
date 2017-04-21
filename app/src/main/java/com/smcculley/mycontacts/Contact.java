@@ -14,7 +14,7 @@ public class Contact {
     private UUID mID;
     private String mName;
     private String mEmail;
-    private boolean mFavorite;
+    private boolean mFavorite = false;
     private String mAddress;
     private Bitmap mImage;
 
@@ -29,7 +29,11 @@ public class Contact {
 
 
     public Contact() {
-        mID = UUID.randomUUID();
+        this(UUID.randomUUID());
+    }
+
+    public Contact(UUID id) {
+        mID = id;
     }
 
     public UUID getID() {
