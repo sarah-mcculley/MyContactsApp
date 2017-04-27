@@ -19,7 +19,7 @@ import java.util.UUID;
 
 //allows us to swipe through pages
 
-public class ContactPagerActivity extends AppCompatActivity {
+public class ContactPagerActivity extends AppCompatActivity implements ContactFragment.Callbacks {
     private ViewPager mViewPager;
     private List<Contact> mContacts;
     private static final String EXTRA_CONTACT_ID = "com.smcculley.mycontacts.contact_id";
@@ -36,7 +36,7 @@ public class ContactPagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contact_pager);
 
         mViewPager = (ViewPager) findViewById(R.id.activity_contact_pager_view_pager);
-        mContacts = AddressBook.get().getContacts();
+        mContacts = AddressBook.get(this).getContacts();
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
@@ -67,4 +67,8 @@ public class ContactPagerActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onContactUpdated() {
+
+    }
 }

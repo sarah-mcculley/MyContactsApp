@@ -1,6 +1,7 @@
 package com.smcculley.mycontacts;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.location.Address;
@@ -54,7 +55,24 @@ public class ContactFragment extends Fragment {
     private EditText mAddressField;
     private MapView mMapView;
     private ImageView mImageView;
+    private Callbacks mCallbacks;
 
+    public interface Callbacks {
+        void onContactUpdated();
+    }
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mCallbacks = (Callbacks) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mCallbacks = null;
+    }
 
     public static ContactFragment newInstance(UUID contactID) {
         ContactFragment contactFragment = new ContactFragment();
@@ -130,6 +148,8 @@ public class ContactFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mContact.setName(s.toString());
+                AddressBook.get(getContext()).updateContact(mContact);
+                mCallbacks.onContactUpdated();
             }
 
             @Override

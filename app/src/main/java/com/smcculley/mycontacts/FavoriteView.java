@@ -80,8 +80,8 @@ public class FavoriteView extends View {
 
     private void initialize() {
         mPaint = new Paint();
-        mStarEmpty = BitmapFactory.decodeResource(getResources(), R.drawable.ic_star_empty);
-        mStarFull = BitmapFactory.decodeResource(getResources(), R.drawable.ic_star_filled);
+        mStarEmpty = BitmapFactory.decodeResource(getResources(), R.drawable.common_google_signin_btn_icon_dark);
+        mStarFull = BitmapFactory.decodeResource(getResources(), R.drawable.common_google_signin_btn_icon_light);
 
         setOnClickListener(new OnClickListener() {
             @Override

@@ -30,6 +30,23 @@ public class AddressBookFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private ContactAdapter mContactAdapter;
     private boolean mShowFavoritesOnly = false;
+    private Callbacks mCallbacks;
+
+    public interface Callbacks {
+        void onContactSelected(Contact contact);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mCallbacks = (Callbacks) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mCallbacks = null;
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -55,8 +72,9 @@ public class AddressBookFragment extends Fragment {
                 mContactAdapter.notifyDataSetChanged();
                 return true;
             case R.id.menu_item_settings:
-                Intent settingsIntent = new Intent(getContext(), SettingsActivity.class);
-                startActivity(settingsIntent);
+                Contact contact = new Contact();
+                AddressBook.get(getContext()).add(contact);
+                mCallbacks.onContactSelected(contact);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -95,7 +113,7 @@ public class AddressBookFragment extends Fragment {
 
     }
 
-    private void updateUI(){
+     void updateUI(){
         AddressBook addressBook = AddressBook.get(getContext());
         List<Contact> contacts = addressBook.getContacts();
         if(mContactAdapter == null){
@@ -127,9 +145,7 @@ public class AddressBookFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            Intent intent = ContactPagerActivity.newIntent(getActivity(), mContact.getID());
-            startActivity(intent);
-
+           mCallbacks.onContactSelected(mContact);
         }
     }
 
